@@ -8,7 +8,12 @@ import IniciosesionView from '@/views/IniciosesionView.vue';
 
 const routes = [
   {
-    path: '/',
+    path: '/', 
+    name: 'login',
+    component: IniciosesionView
+  },
+  {
+    path: '/inicio',
     name: 'home',
     component: InicioView
   },
@@ -31,12 +36,8 @@ const routes = [
     path: '/reportes', 
     name: 'reportes',
     component: ReportesView
-  },
-  {
-    path: '/inicio de sesion', 
-    name: 'inicio de sesion',
-    component: IniciosesionView
   }
+
 ]
 
 const router = createRouter({

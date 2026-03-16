@@ -1,7 +1,10 @@
-<template>
+<!-- <template>
+
+
+
   <nav>
-    <router-link to="/inicio de sesion">Inicio de Sesion</router-link> | 
-    <router-link to="/">Inicio</router-link> |
+    <router-link to="/login">Inicio de Sesion</router-link> | 
+    <router-link to="/inicio">Inicio</router-link> |
     <router-link to="/inventario">Inventario</router-link> |
     <router-link to="/ventas">Ventas</router-link> |
     <router-link to="/gastos">Gastos</router-link> |
@@ -9,8 +12,21 @@
     
   </nav>
   <router-view/>
-</template>
+</template> -->
+<template>
+  <div id="app">
+    <nav v-if="$route.path !== '/'">
+      <router-link to="/inicio">Inicio</router-link> |
+      <router-link to="/inventario">Inventario</router-link> |
+      <router-link to="/ventas">Ventas</router-link> |
+      <router-link to="/gastos">Gastos</router-link> |
+      <router-link to="/reportes">Reportes</router-link> |
+      <router-link to="/">Cerrar Sesión</router-link>
+    </nav>
 
+    <router-view/>
+  </div>
+</template>
 <style>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
