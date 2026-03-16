@@ -1,5 +1,6 @@
 <template>
   <nav>
+    <router-link to="/inicio de sesion">Inicio de Sesion</router-link> | 
     <router-link to="/">Inicio</router-link> |
     <router-link to="/inventario">Inventario</router-link> |
     <router-link to="/ventas">Ventas</router-link> |
