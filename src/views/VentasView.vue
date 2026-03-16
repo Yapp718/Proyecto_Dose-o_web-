@@ -1,42 +1,42 @@
 <template>
 
-<div>
+    <div>
 
-<h1>Ventas</h1>
+        <h1>Ventas</h1>
 
-<select v-model="producto">
+        <select v-model="productoSeleccionado" @change="cargarPrecio">
 
-<option disabled value="">Seleccione producto</option>
+        <option disabled value="">Seleccione producto</option>
 
-<option
-v-for="p in store.productos"
-:key="p.nombre"
-:value="p.nombre"
->
-{{p.nombre}}
-</option>
+        <option
+        v-for="p in store.productos"
+        :key="p.nombre"
+        :value="p"
+        >
+        {{p.nombre}}
+        </option>
 
-</select>
+        </select>
 
-<input v-model.number="cantidad" placeholder="Cantidad">
-<input v-model.number="precio" placeholder="Precio">
-<input type="date" v-model="fecha">
+        <input v-model.number="cantidad" placeholder="Cantidad">
+        <input type="number" v-model="precio" disabled>
+        
 
-<button @click="registrarVenta">
-Registrar Venta
-</button>
+        <button @click="registrarVenta" :disabled="!precio">
+        Registrar Venta
+        </button>
 
-<ul>
+        <ul>
 
-<li v-for="(v,index) in store.ventas" :key="index">
+        <li v-for="(v,index) in store.ventas" :key="index">
 
-{{v.producto}} - {{v.total}} - {{v.fecha }}
+        {{v.producto}} - {{v.total}} - {{v.fecha }}
 
-</li>
+        </li>
 
-</ul>
+        </ul>
 
-</div>
+    </div>
 
 </template>
 
@@ -46,51 +46,83 @@ import { store } from "../store"
 
 export default{
 
-data(){
+    data(){
 
-return{
+        return{
 
-producto:"",
-cantidad:0,
-precio:0,
-fecha:"",
-store
+            store,
+            productoSeleccionado:"",
+            cantidad:0,
+            precio:0,
+            fecha:""
 
-}
+        }
 
-},
+    },
 
-methods:{
+    methods:{
 
-registrarVenta(){
+            cargarPrecio(){
+                console.log(this.productoSeleccionado)
 
-let total = this.cantidad * this.precio
 
-this.store.ventas.push({
+                this.precio = this.productoSeleccionado.precioFinal
 
-producto:this.producto,
-cantidad:this.cantidad,
-precio:this.precio,
-total:total,
-fecha:this.fecha || new Date().toISOString().split('T')[0]
+            },
+            registrarVenta(){
 
-})
+                let item = this.store.productos.find(
+                p => p.nombre === this.productoSeleccionado.nombre
+                )
 
-let item = this.store.productos.find(
-p => p.nombre === this.producto
-)
+                if(!item){
+                    alert("Producto no encontrado")
+                    return
+                }
 
-if(item){
 
-item.stock -= this.cantidad
+                if(item.stock <= 0){
+                    alert("Producto agotado")
+                    return
+                }
 
-}
+                if(this.cantidad <= 0){
+                    alert("Ingrese una cantidad válida")
+                    return
+                }
 
-this.store.guardar()
+                if(this.cantidad > item.stock){
+                    alert("No hay suficiente stock")
+                    return
+                }
 
-}
 
-}
+                let total = this.cantidad * this.precio
+
+                this.store.ventas.push({
+
+                producto:this.productoSeleccionado.nombre,
+                cantidad:this.cantidad,
+                precio:this.precio,
+                total:total,
+                fecha:this.fecha || new Date().toISOString().split('T')[0]
+
+                })
+
+                
+                
+
+                if(item){
+
+                item.stock -= this.cantidad
+
+                }
+
+                this.store.guardar()
+
+            }
+
+    }
 
 }
 

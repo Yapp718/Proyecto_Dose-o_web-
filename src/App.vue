@@ -1,18 +1,3 @@
-<!-- <template>
-
-
-
-  <nav>
-    <router-link to="/login">Inicio de Sesion</router-link> | 
-    <router-link to="/inicio">Inicio</router-link> |
-    <router-link to="/inventario">Inventario</router-link> |
-    <router-link to="/ventas">Ventas</router-link> |
-    <router-link to="/gastos">Gastos</router-link> |
-    <router-link to="/reportes">Reportes</router-link>
-    
-  </nav>
-  <router-view/>
-</template> -->
 <template>
   <div id="app">
     <nav v-if="$route.path !== '/'">
@@ -21,6 +6,7 @@
       <router-link to="/ventas">Ventas</router-link> |
       <router-link to="/gastos">Gastos</router-link> |
       <router-link to="/reportes">Reportes</router-link> |
+      <router-link to="/calcular">Calculadora</router-link> |
       <router-link to="/">Cerrar Sesión</router-link>
     </nav>
 

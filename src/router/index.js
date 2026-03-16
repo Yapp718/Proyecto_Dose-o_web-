@@ -5,6 +5,7 @@ import VentasView from '@/views/VentasView.vue';
 import GastosView from '@/views/GastosView.vue';
 import ReportesView from '@/views/ReportesView.vue';
 import IniciosesionView from '@/views/IniciosesionView.vue';
+import CalcularView from '@/views/CalcularView.vue';
 
 const routes = [
   {
@@ -36,6 +37,11 @@ const routes = [
     path: '/reportes', 
     name: 'reportes',
     component: ReportesView
+  },
+  {
+    path: '/calcular',
+    name: 'calular',
+    component: CalcularView 
   }
 
 ]

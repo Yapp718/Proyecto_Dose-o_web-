@@ -1,28 +1,30 @@
 <template>
 
-<div>
+    <div>
 
-<h1>Gastos</h1>
+        <h1>Gastos</h1>
 
-<input v-model="descripcion" placeholder="Descripción">
-<input v-model.number="valor" placeholder="Valor">
-<input type="date" v-model="fecha">
+        <input v-model="producto" placeholder="Producto">
+        <input v-if="producto" v-model.number="cantidad" placeholder="Cantidad">
+        <input v-model="descripcion" placeholder="Descripción">
+        <input v-model.number="valor" placeholder="Valor">
+       
 
-<button @click="agregarGasto">
-Agregar
-</button>
+        <button @click="agregarGasto">
+        Agregar
+        </button>
 
-<ul>
+        <ul>
 
-<li v-for="(g,index) in store.gastos" :key="index">
+            <li v-for="(g,index) in store.gastos" :key="index">
 
-{{g.descripcion}} - {{g.valor}} - {{g.fecha }}
+             {{g.producto}} - {{g.cantidad}} - {{g.descripcion}} - {{g.valor}} - {{g.fecha }}
 
-</li>
+            </li>
 
-</ul>
+        </ul>
 
-</div>
+    </div>
 
 </template>
 
@@ -32,39 +34,45 @@ import { store } from "../store"
 
 export default{
 
-data(){
+    data(){
 
-return{
+        return{
+        producto:"",
+        descripcion:"",
+        valor:0,
+        cantidad:0,
+        fecha:"",
+        store
 
-descripcion:"",
-valor:0,
-fecha:"",
-store
+        }
 
-}
+    },
 
-},
+    methods:{
 
-methods:{
+        agregarGasto(){
 
-agregarGasto(){
+        this.store.gastos.push({
+            producto:this.producto,
+            cantidad:this.cantidad,
+            descripcion:this.descripcion,
+            valor:this.valor,
+            fecha:this.fecha || new Date().toISOString().split('T')[0]
 
-this.store.gastos.push({
+        })
+        
+        this.store.capital -= this.valor
 
-descripcion:this.descripcion,
-valor:this.valor,
-fecha:this.fecha || new Date().toISOString().split('T')[0]
+        this.store.guardar()
 
-})
+        this.producto=""
+        this.cantidad=0
+        this.descripcion=""
+        this.valor=0
 
-this.store.guardar()
+        }
 
-this.descripcion=""
-this.valor=0
-
-}
-
-}
+    }
 
 }
 
