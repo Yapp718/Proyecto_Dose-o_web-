@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div style="margin-bottom: 30px;">
     <h1 class="dashboard">Dashboard - {{ nombreEmpresa }}</h1>
     <h3>Bienvenido(a), {{ nombreUsuario }}</h3>
     
@@ -121,8 +121,8 @@ export default {
 body {
   font-family: 'Segoe UI', Tahoma, sans-serif;
   background: #f4f6f9;
-  margin: 0;
-  padding: 0;
+  margin: 20px;
+  padding: 20px;
 }
 
 h1 {
@@ -305,5 +305,27 @@ tbody tr:hover {
   padding: 5px 8px;
   border-radius: 6px;
   font-weight: bold;
+}
+
+@media (max-width: 600px) {
+
+  .acciones-capital {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .acciones-capital input {
+    width: 100%;
+    font-size: 16px;
+    padding-right: 0%;
+    justify-content: center ;
+  }
+
+  .acciones-capital button {
+    width: 100%;
+    padding: 16px;
+    font-size: 16px;
+  }
+
 }
 </style>

@@ -222,6 +222,58 @@ export default{
 .fecha {
   color: #64748b;
 }
+@media (max-width: 600px) {
+
+  h1, h2 {
+    text-align: center;
+  }
+
+  .form-ventas {
+    flex-direction: column;
+  }
+
+  input {
+    width: 90%;
+  }
+
+  table {
+    min-width: 100%;
+  }
+
+  tr {
+    display: block;
+    background: white;
+    margin-bottom: 15px;
+    padding: 15px;
+    border-radius: 14px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  }
+
+  td {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: left;
+    margin-bottom: 8px;
+    font-size: 14px;
+    border-bottom: 1px solid #e5e7eb;
+    padding-bottom: 5px;
+  }
+
+  td:last-child {
+    border-bottom: none;
+  }
+
+  td::before {
+    content: attr(data-label);
+    font-weight: bold;
+    color: #64748b;
+  }
+
+  .btn-eliminar {
+    width: 100%;
+  }
+}
 </style>
 
 

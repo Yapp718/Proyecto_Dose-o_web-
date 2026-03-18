@@ -170,4 +170,38 @@ export default{
 .fecha {
   color: #9ca3af;
 }
+
+@media (max-width: 600px) {
+
+  .form-gastos {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .form-gastos input {
+    width: 95%;
+    font-size: 16px;
+  }
+
+  .btn-gasto {
+    width: 95%;
+    font-size: 16px;
+  }
+  .lista-gastos li {
+    display: block;
+    background: white;
+    margin-bottom: 15px;
+    padding: 15px;
+    border-radius: 14px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  }
+
+  .lista-gastos li span {
+    display: block;
+    margin-bottom: 6px;
+    font-size: 14px;
+  }
+
+}
+
 </style>

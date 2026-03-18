@@ -148,85 +148,50 @@ export default{
 </script>
 
 <style scoped>
-/* ================= BASE ================= */ 
-.inventario {
-  max-width: 1000px;
-  margin: auto;
-  padding: 20px;
+input {
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  margin: 5px;
 }
 
-/* FORMULARIO */
-.formulario {
-  display: flex;
-  gap: 10px;
-  margin-bottom: 20px;
-}
-
-.formulario input {
-  flex: 1;
-  padding: 12px;
-  border-radius: 10px;
-  border: 2px solid #e5e7eb;
-  font-size: 14px;
-  transition: 0.3s;
-}
-
-.formulario input:focus {
-  border-color: #22c55e;
-  box-shadow: 0 0 8px rgba(34,197,94,0.3);
-}
-
-
-.btn-agregar {
+button {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 8px;
   background: #22c55e;
   color: white;
-  border: none;
-  padding: 12px 18px;
-  border-radius: 10px;
   font-weight: bold;
   cursor: pointer;
   transition: 0.2s;
 }
 
-.btn-agregar:hover {
+button:hover {
   background: #16a34a;
-  transform: translateY(-2px);
 }
-
-
-.tabla-contenedor {
-  background: white;
-  padding: 15px;
-  border-radius: 12px;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.08);
-  margin-bottom: 25px;
-}
-
 table {
   width: 100%;
   border-collapse: collapse;
+  margin-top: 20px;
+  min-width: 600px;
 }
-
 
 thead {
   background: #1e293b;
   color: white;
 }
 
-th {
+th, td {
   padding: 12px;
   text-align: center;
 }
 
-td {
-  padding: 12px;
-  text-align: center;
-  border-bottom: 1px solid #e5e7eb;
+tbody tr:nth-child(even) {
+  background: #f1f5f9;
 }
-
 
 tbody tr:hover {
-  background: #f0fdf4;
+  background: #e0f2fe;
 }
 
 .stock {
@@ -237,16 +202,107 @@ tbody tr:hover {
 .btn-eliminar {
   background: #ef4444;
   color: white;
-  border: none;
-  padding: 8px 12px;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: 0.2s;
+}
+@media (max-width: 700px) {
+
+  thead{
+    display: none;
+  }
+
+  input {
+    width: 70%;
+    margin-bottom: 10px;
+    font-size: 16px;
+    padding: 12px;
+  }
+
+  button {
+    width: 100%;
+    padding: 14px;
+    font-size: 16px;
+    margin-bottom: 10px;
+  }
+
+  .tabla-contenedor {
+  width: 100%;
+  overflow-x: auto;
 }
 
-.btn-eliminar:hover {
-  background: #b91c1c;
-  transform: scale(1.05);
-  box-shadow: 0 0 10px rgba(239,68,68,0.5);
+  table {
+    border-radius: 12px;
+    background: white;
+    min-width: 600px;
+  }
+
+  thead {
+    font-size: 14px;
+  }
+
+  td, th {
+    padding: 10px;
+  }
 }
-</style>
+
+@media (max-width: 600px) {
+
+  h1, h2 {
+    text-align: center;
+  }
+
+  .formulario {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  input {
+    width: 90%;
+    font-size: 16px;
+  }
+
+  button {
+    width: 90%;
+  }
+
+  .tabla-contenedor {
+    width: 100%;
+  }
+
+  table {
+    min-width: 100%;
+  }
+
+  tr {
+    display: block;
+    background: white;
+    margin-bottom: 15px;
+    padding: 15px;
+    border-radius: 14px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  }
+
+  td {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    margin-bottom: 8px;
+    font-size: 14px;
+    border-bottom: 1px solid #e5e7eb;
+    padding-bottom: 5px;
+  }
+
+  td:last-child {
+    border-bottom: none;
+  }
+
+  td::before {
+    content: attr(data-label);
+    font-weight: bold;
+    color: #64748b;
+  }
+
+  .btn-eliminar {
+    width: 100%;
+  }
+}
+  </style>

@@ -205,4 +205,58 @@ body {
 .btn-guardar:hover {
   transform: scale(1.05);
 }
+
+
+@media (max-width: 600px) {
+
+  body {
+    padding: 10px;
+  }
+
+  .calculadora {
+    max-width: 100%;
+    margin: 0;
+    padding: 20px;
+    border-radius: 0; 
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .calculadora h1 {
+    font-size: 20px;
+  }
+
+  .campo {
+    margin-bottom: 12px;
+  }
+
+  .campo input, .campo select {
+    padding: 12px;
+    font-size: 16px; 
+  }
+
+  .btn-calcular{
+    padding: 14px;
+    font-size: 16px;
+  }
+
+  .btn-guardar{
+    margin-top: auto;
+    padding: 14px;
+    font-size: 16px;
+
+  }
+
+  .resultado {
+    margin-top: 15px;
+    padding: 20px;
+  }
+
+  .resultado h2 {
+    font-size: 28px;
+  }
+
+}
 </style>
