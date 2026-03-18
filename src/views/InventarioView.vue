@@ -1,67 +1,71 @@
 <template>
+<div class="inventario">
 
-    <div>
+  <h1>Inventario</h1>
 
-        <h1>Inventario</h1>
+  <div class="formulario">
+    <input v-model="producto" placeholder="Producto">
+    <input v-model.number="stock" placeholder="Stock">
+    <input type="number" v-model="precioBase" placeholder="Precio base">
+    <button class="btn-agregar" @click="agregarProducto">Agregar</button>
+  </div>
 
-        <input v-model="producto" placeholder="Producto">
-        <input v-model.number="stock" placeholder="Stock">
-        <input type="number" v-model="precioBase" placeholder="Precio base">
+  <div class="tabla-contenedor">
+    <table>
+      <thead>
+        <tr>
+          <th>Producto</th>
+          <th>Stock</th>
+          <th>Precio Base</th>
+          <th>Precio Venta</th>
+          <th>Fecha</th>
+          <th>Acción</th>
+        </tr>
+      </thead>
 
-        <button @click="agregarProducto">Agregar</button>
+      <tbody>
+        <tr v-for="(p,index) in store.productos" :key="index">
+          <td>{{p.nombre}}</td>
+          <td class="stock">{{p.stock}}</td>
+          <td>${{p.precioBase}}</td>
+          <td>${{p.precioFinal}}</td>
+          <td>{{ p.fecha }}</td>
 
-        <table border="1">
-
-            <tr>
-            <th>Producto</th>
-            <th>Stock</th>
-            <th>Precio Base</th>
-            <th>Precio Venta</th>
-            <th>Fecha</th>
-            <th>Acción</th>
-            </tr>
-
-            <tr v-for="(p,index) in store.productos" :key="index">
-
-            <td>{{p.nombre}}</td>
-            <td>{{p.stock}}</td>
-            <td>{{p.precioBase}}</td>
-            <td>{{p.precioFinal}}</td>
-            <td>{{ p.fecha }}</td>
-
-            <td>
-            <button @click="eliminarProducto(index)">
-            Eliminar
+          <td>
+            <button class="btn-eliminar" @click="eliminarProducto(index)">
+              Eliminar
             </button>
-            </td>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 
-            </tr>
+  <h2>Inventario Gastos</h2>
 
-        </table>
-        <h2>Inventario Gastos</h2>
+  <div class="tabla-contenedor">
+    <table>
+      <thead>
+        <tr>
+          <th>Producto</th>
+          <th>Stock</th>
+          <th>Precio Base</th>
+          <th>Fecha</th>
+        </tr>
+      </thead>
 
-        <table border="1">
+      <tbody>
+        <tr v-for="(p,index) in inventarioGeneral" :key="index">
+          <td>{{p.nombre}}</td>
+          <td class="stock">{{p.stock}}</td>
+          <td>${{p.precioBase}}</td>
+          <td>{{p.fecha}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 
-            <tr>
-                <th>Producto</th>
-                <th>Stock</th>
-                <th>Precio Base</th>
-                <th>Fecha</th>
-            </tr>
-
-            <tr v-for="(p,index) in inventarioGeneral" :key="index">
-
-                <td>{{p.nombre}}</td>
-                <td>{{p.stock}}</td>
-                <td>{{p.precioBase}}</td>
-                <td>{{p.fecha}}</td>
-
-            </tr>
-
-        </table>
-
-    </div>
-
+</div>
 </template>
 
 <script>
@@ -142,3 +146,107 @@ export default{
 }
 
 </script>
+
+<style scoped>
+/* ================= BASE ================= */ 
+.inventario {
+  max-width: 1000px;
+  margin: auto;
+  padding: 20px;
+}
+
+/* FORMULARIO */
+.formulario {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.formulario input {
+  flex: 1;
+  padding: 12px;
+  border-radius: 10px;
+  border: 2px solid #e5e7eb;
+  font-size: 14px;
+  transition: 0.3s;
+}
+
+.formulario input:focus {
+  border-color: #22c55e;
+  box-shadow: 0 0 8px rgba(34,197,94,0.3);
+}
+
+
+.btn-agregar {
+  background: #22c55e;
+  color: white;
+  border: none;
+  padding: 12px 18px;
+  border-radius: 10px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.btn-agregar:hover {
+  background: #16a34a;
+  transform: translateY(-2px);
+}
+
+
+.tabla-contenedor {
+  background: white;
+  padding: 15px;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+  margin-bottom: 25px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+
+thead {
+  background: #1e293b;
+  color: white;
+}
+
+th {
+  padding: 12px;
+  text-align: center;
+}
+
+td {
+  padding: 12px;
+  text-align: center;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+
+tbody tr:hover {
+  background: #f0fdf4;
+}
+
+.stock {
+  font-weight: bold;
+  color: #3b82f6;
+}
+
+.btn-eliminar {
+  background: #ef4444;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.btn-eliminar:hover {
+  background: #b91c1c;
+  transform: scale(1.05);
+  box-shadow: 0 0 10px rgba(239,68,68,0.5);
+}
+</style>
